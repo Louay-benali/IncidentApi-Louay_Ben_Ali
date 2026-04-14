@@ -1,0 +1,6 @@
+@IncidentAPI_Louay_Ben_Ali_HostAddress = http://localhost:5199
+
+GET {{IncidentAPI_Louay_Ben_Ali_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
