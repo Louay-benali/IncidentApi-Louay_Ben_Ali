@@ -34,7 +34,7 @@ public class IncidentsController : ControllerBase
             return BadRequest($"Severity must be one of: {string.Join(", ", AllowedSeverities)}");
         }
 
-        // Set defaults
+        // Set defaults - Status initialized to OPEN, CreatedAt set to current UTC time
         incident.Id = _nextId++;
         incident.Status = "OPEN";
         incident.CreatedAt = DateTime.UtcNow;
