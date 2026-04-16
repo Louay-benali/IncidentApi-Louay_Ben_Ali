@@ -34,9 +34,9 @@ public class IncidentsController : ControllerBase
             return BadRequest($"Severity must be one of: {string.Join(", ", AllowedSeverities)}");
         }
 
-        // Set defaults
+        // Set defaults - Default Status is IN_PROGRESS
         incident.Id = _nextId++;
-        incident.Status = "OPEN";
+        incident.Status = "IN_PROGRESS";
         incident.CreatedAt = DateTime.UtcNow;
         incident.Severity = incident.Severity.ToUpper();
 
