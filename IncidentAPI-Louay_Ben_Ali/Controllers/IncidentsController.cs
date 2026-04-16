@@ -204,6 +204,8 @@ public class IncidentsController : ControllerBase
     }
 
     // PATCH: api/incidents/{id}/status
+    // Action ajoutée par mon collaborateur
+    // Test des pull requests !!!
     [HttpPatch("{id}/status")]
     public async Task<IActionResult> PatchIncidentStatus(int id, [FromBody] string status)
     {
