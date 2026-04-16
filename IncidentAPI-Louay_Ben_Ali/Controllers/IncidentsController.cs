@@ -202,4 +202,23 @@ public class IncidentsController : ControllerBase
 
         return Ok(results);
     }
+
+    // PATCH: api/incidents/{id}/status
+    [HttpPatch("{id}/status")]
+    public async Task<IActionResult> PatchIncidentStatus(int id, [FromBody] string status)
+    {
+        if (!AllowedStatuses.Contains(status.ToUpper()))
+        {
+            return BadRequest($"Status must be one of the following: {string.Join(", ", AllowedStatuses)}");
+        }
+
+        var incident = _incidents.FirstOrDefault(i => i.Id == id);
+        if (incident == null)
+            return NotFound($"Incident with ID {id} not found.");
+
+        incident.Status = status.ToUpper();
+        await Task.Delay(50); // Simulate async operation
+
+        return NoContent();
+    }
 }
