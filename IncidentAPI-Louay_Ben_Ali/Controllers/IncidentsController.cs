@@ -132,4 +132,36 @@ public class IncidentsController : ControllerBase
 
         return Ok(filtered);
     }
+
+    // GET: api/incidents/filter-status-async/{status}
+    [HttpGet("filter-status-async/{status}")]
+    public async Task<IActionResult> FilterByStatusAsync(string status)
+    {
+        if (string.IsNullOrWhiteSpace(status))
+        {
+            return BadRequest("Status filter cannot be empty.");
+        }
+
+        var filtered = await Task.FromResult(_incidents
+            .Where(i => i.Status.Contains(status.ToUpper(), StringComparison.OrdinalIgnoreCase))
+            .ToList());
+
+        return Ok(filtered);
+    }
+
+    // GET: api/incidents/filter-severity-async/{severity}
+    [HttpGet("filter-severity-async/{severity}")]
+    public async Task<IActionResult> FilterBySeverityAsync(string severity)
+    {
+        if (string.IsNullOrWhiteSpace(severity))
+        {
+            return BadRequest("Severity filter cannot be empty.");
+        }
+
+        var filtered = await Task.FromResult(_incidents
+            .Where(i => i.Severity.Contains(severity.ToUpper(), StringComparison.OrdinalIgnoreCase))
+            .ToList());
+
+        return Ok(filtered);
+    }
 }
