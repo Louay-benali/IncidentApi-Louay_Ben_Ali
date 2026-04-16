@@ -4,6 +4,4 @@ obj/
 *.Development.json
 .vs/
 .vscode/
-.vs/
-bin/
-obj/
+Migrations/
